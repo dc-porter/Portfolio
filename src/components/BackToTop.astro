@@ -1,0 +1,59 @@
+---
+/*
+ * The "Back to top" button at the end of every page, just above the footer.
+ * It scrolls smoothly back to the top (instantly with "Reduce motion" on) and
+ * moves keyboard focus there too. Without JavaScript it is a plain link to #top.
+ */
+import Icon from './Icon.astro';
+---
+
+<div class="container back-to-top-row">
+  <a class="button button-secondary back-to-top" href="#top" data-back-to-top>
+    <Icon name="up" size={17} />
+    Back to top
+  </a>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLAnchorElement>('[data-back-to-top]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault();
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      document.getElementById('top')?.focus({ preventScroll: true });
+      history.replaceState(null, '', location.pathname + location.search);
+    });
+  });
+</script>
+
+<style>
+  .back-to-top-row {
+    display: flex;
+    justify-content: flex-end;
+    padding-block: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 3vw, 2rem);
+  }
+
+  /* A little smaller than the site's main buttons, but still at least 44px tall. */
+  .back-to-top {
+    min-height: 44px;
+    padding: 0.65rem 1.25rem;
+  }
+
+  .back-to-top :global(.icon) {
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .back-to-top:hover :global(.icon) {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 760px) {
+    .back-to-top-row {
+      justify-content: stretch;
+    }
+
+    .back-to-top {
+      width: 100%;
+    }
+  }
+</style>

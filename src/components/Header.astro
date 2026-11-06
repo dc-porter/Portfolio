@@ -21,7 +21,7 @@ const isActive = (href: string) =>
   href === '/' ? current === url('/') : current.startsWith(url(href));
 ---
 
-<header class="site-header">
+<header class="site-header" id="top" tabindex="-1">
   <div class="container header-inner">
     <a class="wordmark" href={url('/')}>
       {name}
@@ -107,6 +107,11 @@ const isActive = (href: string) =>
 </script>
 
 <style>
+  /* "Back to top" moves keyboard focus here; no outline needed on the whole bar. */
+  .site-header:focus {
+    outline: none;
+  }
+
   .site-header {
     position: sticky;
     top: 0;
@@ -127,9 +132,9 @@ const isActive = (href: string) =>
   .wordmark {
     margin-right: auto;
     color: var(--ink);
-    font-family: var(--font-display);
+    font-family: var(--font-title);
     font-size: 1rem;
-    font-weight: 800;
+    font-weight: 400;
     letter-spacing: 0.06em;
     text-decoration: none;
     text-transform: uppercase;

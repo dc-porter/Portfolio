@@ -41,13 +41,15 @@ Each section of the home page has its own file in `content/home/`, in the order 
 Your name comes from `content/settings.md` and your photo from `content/pages/about.md`,
 so you only set them once.
 
-**Fonts:** your name on the home page, the big page titles (Work samples, About me, Résumé, Contact),
-and the large section headings use **Abril Fatface**. The line above your name and your title share
-one style in Marcellus, smaller headings use Marcellus, sample page titles use Archivo, and all other
-text, including the intro under your title, uses Jost.
+**Fonts:** your name (in the hero, the top bar, and the footer), the big page titles (Work samples,
+About me, Résumé, Contact, and every work sample's title), and the large section headings use
+**Abril Fatface**. The line above your name and your title share one bold, wide, all-capitals style in
+Archivo. Smaller headings use Marcellus, and all other text, including the intro under your title,
+uses Jost.
 
 **Accent words:** put underscores around a word in a title to show it in the accent color, for example
-`title: Let’s work _together_`. It uses the same font as the rest of the heading.
+`title: Let’s work _together_`. It uses the same font as the rest of the heading. On the black
+"Let's work together" band at the bottom of the home page, every word stays white.
 
 **Type sizes:** every page title, every section heading, every card or step heading, and all body
 text each have exactly one size, set once at the top of `src/styles/global.css` (`--text-h1`,
@@ -96,14 +98,15 @@ them or return to a page.
 - **Home hero:** the line above your name drops in from the top; your name types out letter by
   letter with a blinking cursor, which blinks a few times and fades away; your title slides in from
   the left; and the intro rises up from below. The Download résumé button doesn't move.
-- **About me** types out letter by letter with a blinking cursor, exactly like your name on the home
-  page. The **page titles** (Work samples, Résumé, Contact) and the **My process** heading slide in
-  from the left while their letters fade in one by one.
+- **Page titles:** About me, Work samples, Résumé, and Contact type out letter by letter with a
+  blinking cursor, at the same speed as your name on the home page. The **My process** heading
+  slides in from the left while its letters fade in one by one.
 - **Core capabilities** and **Tools & technologies** headings, and the **stats**, fade in gently.
 - **Other headings, cards, and process steps** fade in and rise into place.
 - **Banner:** the black band under the hero scrolls from right to left in an endless loop that
   never pauses. An item takes about 6.7 seconds to cross a phone screen and about 25 seconds to
   cross a wide screen.
+- **Back to top:** the button at the end of every page scrolls smoothly back to the top.
 - **Hover:** with a mouse or trackpad, cards, tiles, and buttons lift slightly. Touch screens get no
   hover effects.
 
@@ -285,6 +288,21 @@ Because the build stops on errors, a mistake never reaches your live site. The l
   behind your photo on the Home and About pages; it matches the photo's studio background. The
   `--tint-` lines set the soft colors of the capability boxes and tool tiles.
 - **Change the top navigation:** edit the `links` list in `src/components/Header.astro`.
+- **Turn on private visitor analytics:** see [Visitor analytics](#visitor-analytics) below.
+
+### Visitor analytics
+
+The site can count visits with [GoatCounter](https://www.goatcounter.com), which is free for personal
+sites, uses no cookies, and doesn't track people across sites. Nothing shows on the public site:
+only you see the numbers, on your GoatCounter dashboard.
+
+1. Sign up at goatcounter.com and choose a site code, for example `dairyia`. Your dashboard is then
+   at `https://dairyia.goatcounter.com`.
+2. In `content/settings.md`, find the `# goatcounter: your-code` line. Delete the `#` and the space
+   after it, and replace `your-code` with your site code: `goatcounter: dairyia`.
+3. Commit the change. Once the site republishes, visits appear on your dashboard within a minute or so.
+
+To turn analytics off again, put the `#` back at the start of the line.
 
 ### Renaming the repository
 
@@ -315,9 +333,9 @@ You don't need this to publish, but it lets you see changes before pushing them.
 | File or folder | What it does |
 | --- | --- |
 | `src/pages/` | One template per page type. `src/pages/work/[id].astro` is the work sample detail template. |
-| `src/components/` | Reusable pieces: header, footer (email and LinkedIn only), the "Back" link bar, sample cards, the two-column photo section, the scrolling banner (`Marquee.astro`), the typewriter text (`Typewriter.astro`), the black category bar on the Work Samples page, accent words, icons, and the PDF viewer (which uses PDF.js to draw PDFs on phones). |
+| `src/components/` | Reusable pieces: header, footer (email and LinkedIn only), the "Back" link bar, sample cards, the two-column photo section, the scrolling banner (`Marquee.astro`), the typewriter text (`Typewriter.astro`), the "Back to top" button (`BackToTop.astro`), the black category bar on the Work Samples page, accent words, icons, and the PDF viewer (which uses PDF.js to draw PDFs on phones). |
 | `src/lib/icons.ts` | The thin-line icons you can pick with `icon:` in Markdown. |
-| `src/styles/global.css` | Colors, the type scale, fonts (Abril Fatface for big page titles and home section headings, Archivo for your name and sample titles, Marcellus for smaller headings, Jost for text, Bodoni Moda italic for accent words), animations, spacing, and light/dark mode. |
+| `src/styles/global.css` | Colors, the type scale, fonts (Abril Fatface for your name, page and sample titles, and home section headings, Archivo for the line above your name, your title, the stats, the process step numbers, the banner, and the category bar, Marcellus for smaller headings, Jost for text, Bodoni Moda italic for accent words), animations, spacing, and light/dark mode. |
 | `src/lib/logos.ts` | Looks up tool logos from Simple Icons by name. |
 | `src/content.config.ts` | The list of fields each Markdown file can have, and which are required. |
 | `src/lib/content.ts` | Loads the content, leaves out drafts and hidden categories, and produces the friendly error messages. |
