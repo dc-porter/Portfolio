@@ -1,16 +1,21 @@
 ---
 /*
  * Types a heading out letter by letter, with a blinking cursor that fades away
- * at the end. Used for your name on the home page and the "About me" heading.
+ * at the end. Used for your name on the home page, the "About me" heading, and
+ * the Work samples, Résumé, and Contact page titles.
+ * By default each word sits on its own line (your name, "About me"). Add
+ * "inline" to keep the words on one line, wrapping only when they don't fit.
  * Put it inside an element with the "typed" class (and data-replay, so it plays
  * again when scrolled back to). Screen readers hear the text once, as normal text.
  * The timing lives in src/styles/global.css (--type-start and --type-step).
  */
 interface Props {
   text: string;
+  /** Keep the words on one line instead of stacking them. */
+  inline?: boolean;
 }
 
-const { text } = Astro.props;
+const { text, inline = false } = Astro.props;
 
 // Each letter gets a position (--i). The space between words counts as one beat,
 // so the cursor pauses a moment at the line break.
@@ -23,9 +28,11 @@ const last = index - 1;
 ---
 
 <span class="visually-hidden">{text}</span>
-<span aria-hidden="true">
+<span aria-hidden="true" class:list={{ inline }}>
   {
     words.map((word, w) => (
+      <>
+      {inline && w > 0 && ' '}
       <span class="word">
         {word.map(({ letter, i }) => (
           <span
@@ -40,6 +47,7 @@ const last = index - 1;
           </span>
         ))}
       </span>
+      </>
     ))
   }
 </span>
@@ -48,5 +56,9 @@ const last = index - 1;
   .word {
     display: block;
     white-space: nowrap;
+  }
+
+  .inline .word {
+    display: inline-block;
   }
 </style>

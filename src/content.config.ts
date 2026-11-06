@@ -28,6 +28,11 @@ const settings = defineCollection({
     linkedin: z.url(),
     location: z.string().optional(),
     sourceCode: z.url().optional(),
+    /** Your GoatCounter site code (the "yourname" in yourname.goatcounter.com). */
+    goatcounter: z
+      .string()
+      .regex(/^[a-z0-9-]+$/, 'Use only the site code, for example "dairyia" (lowercase letters, numbers, and dashes).')
+      .optional(),
   }),
 });
 

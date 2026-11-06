@@ -25,6 +25,13 @@ location: Kirkland, WA
 # The footer's "Site source on GitHub" link is turned off. To show it
 # again, delete the # at the start of the next line.
 # sourceCode: https://github.com/Deepo333/Portfolio
+
+# Private visitor analytics (GoatCounter). No cookies, and nothing shows on the site.
+# Only you can see the numbers, at https://YOUR-CODE.goatcounter.com.
+# TODO: After you sign up at goatcounter.com, delete the # at the start of the
+# next line and replace your-code with your site code (only the code, not the
+# whole web address). Until then, no analytics script runs.
+# goatcounter: your-code
 ---
 
 This file only holds settings. Nothing below the `---` line appears on the site.
