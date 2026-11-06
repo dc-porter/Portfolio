@@ -18,9 +18,7 @@ title: Title of the sample
 summary: One or two sentences that appear on the sample's card and at the top of its page.
 
 # Must match a category name in content/pages/work.md exactly:
-# Procedures, Resources, Forms, or Presentations.
-# (Docs as code is also listed there, but it's hidden for now. See the
-# note in content/pages/work.md to turn it back on.)
+# Procedures, Resources, Forms, Presentations, or Docs as Code.
 category: Procedures
 
 # When you finished the project (YYYY-MM-DD). Newest samples are listed first.
@@ -56,6 +54,11 @@ images:
   - src: ./images/your-image-name.png
     alt: Describe the image.
     caption: Optional caption shown under the image.
+
+# A docs-as-code sample: put the Markdown file in content/docs/ and write its
+# file name here without ".md". The whole document appears on the page, and
+# "link" (below) becomes the button in its top bar, such as a GitHub link.
+# markdown: my-reference-page
 
 # A button that links somewhere else, such as a live site or GitHub repository.
 link:

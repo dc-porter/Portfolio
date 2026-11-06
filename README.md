@@ -16,6 +16,7 @@ Everything you'll normally edit is in the **`content/`** folder (words and image
 | Page | Address | File to edit |
 | --- | --- | --- |
 | Your name, email, LinkedIn (shown on every page) | — | `content/settings.md` |
+| Docs-as-code samples (the Markdown documents themselves) | shown on their work sample page | `content/docs/<file-name>.md` |
 | Home (one file per section, listed below) | `/` | `content/home/` |
 | Work Samples hub, including the category names and descriptions | `/work/` | `content/pages/work.md` |
 | Each work sample's detail page | `/work/<file-name>/` | `content/work/<file-name>.md` |
@@ -29,7 +30,7 @@ Each section of the home page has its own file in `content/home/`, in the order 
 
 | Section | File | What you edit there |
 | --- | --- | --- |
-| Hero | `content/home/intro.md` | The small line above your name, the short intro, and the Download résumé button label. Your name and job title come from `content/settings.md` |
+| Hero | `content/home/intro.md` | The small line above your name, the short intro, and the Download résumé button label. The short intro is also the default link-preview description. Your name and job title come from `content/settings.md` |
 | Document-type banner | `content/home/banner.md` | The words in the black band that scrolls under the hero |
 | Stats | `content/home/stats.md` | The four numbers under the hero |
 | Featured work | `content/home/featured.md` | Section heading, intro, and the three category cards: a sample for each (its category becomes the heading) and one line of text |
@@ -151,10 +152,9 @@ The site adjusts these links automatically so they work on GitHub Pages.
    page address: `/work/api-quickstart-guide/`.
 3. **Fill in the frontmatter.** The template explains every field. The important ones:
    - `category` must match one of the names in `content/pages/work.md` exactly
-     (`Procedures`, `Resources`, `Forms`, or `Presentations`). `Docs as code` is hidden for now;
-     see "Turn Docs as code back on" below.
+     (`Procedures`, `Resources`, `Forms`, `Presentations`, or `Docs as Code`).
    - `cover` and `coverAlt` set the card image and its description for screen readers.
-   - `pdf`, `images`, and `link` control what appears in **The sample** section. Delete the ones you don't use.
+   - `pdf`, `markdown`, `images`, and `link` control what appears in **The sample** section. Delete the ones you don't use.
      A PDF appears in a viewer on the page, with **Full screen** and **Download** buttons (see
      "How PDFs appear" below).
    - `draft: true` hides the sample until you're ready.
@@ -165,8 +165,9 @@ The site adjusts these links automatically so they work on GitHub Pages.
 The sample appears automatically on the Work Samples page under its category, and its detail page
 gets a "Previous / Next" link to the other samples. Samples are listed newest first, based on `date`.
 
-Your seven samples are in `content/work/`. Each one shows its PDF from `public/files/`, and its
-card image is in `content/work/images/`:
+Your eight samples are in `content/work/`. Each one shows its PDF from `public/files/` (or, for the
+docs-as-code sample, its Markdown document from `content/docs/`), and its card image is in
+`content/work/images/`:
 
 | File | Category | On the home page |
 | --- | --- | --- |
@@ -177,6 +178,7 @@ card image is in `content/work/images/`:
 | `technical-writing-review-checklist.md` | Resources | Yes |
 | `echodyne-field-brief.md` | Resources | |
 | `new-employee-onboarding-windows-setup-guide.md` | Presentations | |
+| `stripe-retrieve-balance-reference.md` | Docs as Code | |
 
 **Featured work.** The home page shows three category cards, set in `content/home/featured.md`:
 one for Procedures, one for Forms, and one for Resources. Each card shows the category name, one line
@@ -206,19 +208,24 @@ To remove a sample, delete its `.md` file and the files it uses in `content/work
 
 This all happens automatically for any PDF you add. Your résumé page works the same way.
 
-### Turn Docs as code back on
+### How docs-as-code samples appear
 
-The Docs as code category is hidden until you have a sample for it. Its code and description are
-still in place. To show it again:
+A docs-as-code sample is a Markdown file in `content/docs/`, kept as plain Markdown so it reads
+well on GitHub too. To show one on the site:
 
-1. Open `content/pages/work.md`.
-2. Under `- name: Docs as code`, delete the line `hidden: true` (and, if you like, the three `#` note
-   lines above it).
-3. Add a work sample with `category: Docs as code` (copy `content/work/_TEMPLATE.md`).
-4. Publish. Docs as code then appears on the Work Samples page and in its category bar.
+1. Put the Markdown file in `content/docs/`, for example `content/docs/my-reference.md`.
+2. Add a work sample in `content/work/` (copy `_TEMPLATE.md`) with `category: Docs as Code` and
+   `markdown: my-reference` (the file name without `.md`).
+3. Add a `link` with the file's GitHub address. It becomes the button in the document's top bar,
+   for example **View the Markdown source on GitHub**.
 
-A category only appears once it has at least one sample, so step 3 is what makes it visible. The same
-`hidden: true` line works for any category: it hides the category and every sample in it.
+The whole document then appears under **The sample**, in the site's fonts and colors. On phones,
+each table row becomes a short stacked block, and long lines in code blocks wrap, so the page never
+scrolls sideways. The Stripe sample (`content/docs/stripe-retrieve-balance-reference.md`) works this
+way. Its GitHub link points at the `main` branch, so it works once this change is merged.
+
+Any category can be hidden with a `hidden: true` line under it in `content/pages/work.md`. That
+hides the category and every sample in it.
 
 ---
 
@@ -262,6 +269,15 @@ Because the build stops on errors, a mistake never reaches your live site. The l
 - **Show the footer's "Site source on GitHub" link again:** in `content/settings.md`, delete the `#` at
   the start of the `sourceCode:` line.
 - **Change your name or job title:** edit `name` and `role` in `content/settings.md`. They appear in the home page hero, the footer, and browser tabs.
+- **Change a link preview:** when a page is shared on LinkedIn, Slack, or X, the preview shows the
+  page's title, its `description` line (each file in `content/pages/`; a work sample uses its
+  `summary`), and the image `public/og-image.jpg` (1200 × 630: your headshot, name, and title). Pages
+  without a description use the short intro from `content/home/intro.md`. To change the image,
+  replace `public/og-image.jpg` with another 1200 × 630 JPEG of the same name.
+- **Favicon:** the "DP" monogram in the browser tab (Abril Fatface, black on light beige) is
+  `public/favicon.svg`, with `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`,
+  `apple-touch-icon.png` (180 × 180, for iPhone home screens), and `icon-192.png` / `icon-512.png`
+  (listed in `site.webmanifest`) next to it.
 - **Change the line above your name, the intro, or the button:** edit `content/home/intro.md`. To add a
   second button that opens your Work Samples page, follow the note at the bottom of that file's settings.
 - **Change the scrolling banner:** edit the `items` list in `content/home/banner.md`. To change its

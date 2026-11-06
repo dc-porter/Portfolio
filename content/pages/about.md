@@ -9,7 +9,7 @@
 # headshot-cutout.png are earlier photos; the site doesn't use them.)
 
 title: About me
-description: About Dairyia Porter, technical writer.
+description: Dairyia Porter’s background, strengths, and approach to clear, accurate technical documentation.
 
 # Shown in large type next to your photo. The rest of your bio goes
 # below the --- line.
@@ -28,11 +28,10 @@ In every role, I focus on clear structure, reliable document control, and effici
 - **Plain language.** Clear, direct writing people understand the first time.
 - **Audience focus.** Content shaped for the reader, whether that's an end user, an engineer, or an executive.
 - **Process clarity.** Steps, roles, decision points, and visuals like flowcharts and tables that make complex work easy to follow.
-- **Document control.** Templates, versioning, and change requests that keep the approved version current and easy to find.
-- **Knowledge management.** Guides, processes, and organized libraries so teams can find answers on their own.
-- **Collaboration.** I gather input from engineers, subject matter experts, and leaders, and handle the writing so experts can focus on the content.
-- **AI tools & automation.** Streamlining repetitive tasks without compromising accuracy, quality, or confidentiality.
-- **Tools & formats.** Docs-as-code, API documentation, DITA/XML, MadCap Flare, Oxygen XML Editor, Confluence, SharePoint, and Jira.
+- **Attention to detail.** Every draft is checked for accuracy, consistency, and formatting before it reaches a reviewer.
+- **Review cycles that keep moving.** Clear review steps, tracked comments, and resolved feedback, so documents get from draft to approval without stalling.
+- **One source of truth.** Every document has one approved, current version in one place, and related documents stay aligned when something changes.
+- **AI-assisted, human-checked.** I use AI tools to speed up drafting, formatting, and cleanup, and I review every output for accuracy before it goes anywhere.
 
 <!-- TODO: Add an "Outside of work" section if you'd like, with a sentence or two about hobbies,
 volunteering, or what you're learning now. Type it below this note, starting with this heading line:

@@ -1,8 +1,6 @@
 ---
 # ─────────────────────────────────────────────────────────────
 # HOME PAGE · TOOLS & TECHNOLOGIES
-# Arena (on your résumé) is left out; add it back if you like.
-#
 # Tools are grouped. Each group has a name and a list of tools; the
 # groups are numbered 01, 02, ... automatically, and each group shows
 # how many tools it has.
@@ -42,6 +40,9 @@ groups:
       - name: Adobe Acrobat
         logoFile: /logos/adobe-acrobat.png
         logoPlate: app
+      - name: Bluebeam Revu
+        logoFile: /logos/bluebeam.png
+        logoPlate: app
   - name: Content & collaboration
     items:
       - name: SharePoint
@@ -52,6 +53,8 @@ groups:
       - name: Jira
         logo: jira
       - name: Livelink
+      - name: Arena
+        logoFile: /logos/arena.png
   - name: Docs as code & structured authoring
     items:
       - name: MadCap Flare
@@ -79,12 +82,6 @@ groups:
         logoPlate: app
       - name: Copilot
         logoFile: /logos/microsoft-copilot.png
-        logoPlate: app
-      - name: Grok
-        logoFile: /logos/grok.png
-        logoPlate: app
-      - name: Muse
-        logoFile: /logos/muse-from-meta.png
         logoPlate: app
 ---
 

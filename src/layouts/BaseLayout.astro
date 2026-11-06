@@ -9,12 +9,12 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import BackToTop from '../components/BackToTop.astro';
 import BackBar from '../components/BackBar.astro';
-import { getSettings, url } from '../lib/content';
+import { getDefaultDescription, getSettings, url } from '../lib/content';
 
 interface Props {
   /** Shown in the browser tab, before your name. Leave empty on the home page. */
   title?: string;
-  /** Short summary for search engines and link previews. */
+  /** One line for search engines and link previews. Defaults to the home page intro. */
   description?: string;
   /** Show the "Back" link at the top of the page. Every page has it except Home. */
   backLink?: boolean;
@@ -29,7 +29,7 @@ interface Props {
 const settings = await getSettings();
 const {
   title,
-  description = settings.description,
+  description = await getDefaultDescription(),
   backLink = true,
   backLinks,
   backLinksOnly = false,
@@ -37,6 +37,9 @@ const {
 } = Astro.props;
 const pageTitle = title ? `${title} | ${settings.name}` : `${settings.name} | ${settings.role}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// The link preview image (1200 × 630) shown when a page is shared on LinkedIn, Slack, etc.
+const previewImage = new URL(url('/og-image.jpg'), Astro.site);
+const previewAlt = `${settings.name}, ${settings.role.toLowerCase()}`;
 ---
 
 <!doctype html>
@@ -47,14 +50,33 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Favicon: a "DP" monogram in Abril Fatface (files in public/). -->
+    <link rel="icon" href={url('/favicon.ico')} sizes="48x48" />
+    <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
+    <link rel="icon" href={url('/favicon-32x32.png')} type="image/png" sizes="32x32" />
+    <link rel="icon" href={url('/favicon-16x16.png')} type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href={url('/apple-touch-icon.png')} sizes="180x180" />
+    <link rel="manifest" href={url('/site.webmanifest')} />
+
+    <!-- Link previews (Open Graph for LinkedIn, Slack, Facebook; Twitter card for X). -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={settings.name} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={previewImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={previewAlt} />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={previewImage} />
+    <meta name="twitter:image:alt" content={previewAlt} />
     <meta name="theme-color" content="#ffffff" />
 
     {

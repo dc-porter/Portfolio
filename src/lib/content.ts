@@ -58,6 +58,23 @@ export async function getSettings() {
   return entry.data;
 }
 
+/**
+ * The short intro under your title on the home page (the text below the --- line
+ * in content/home/intro.md), as plain text. It's the default description that
+ * search engines and link previews show for any page that doesn't set its own.
+ */
+export async function getDefaultDescription(): Promise<string> {
+  const [intro] = await getCollection('homeIntro');
+  const text = (intro?.body ?? '')
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/[*_`#>]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!text) throw new Error('content/home/intro.md needs a short intro below its --- line.');
+  return text;
+}
+
 const homeFiles = {
   homeIntro: 'intro',
   homeBanner: 'banner',

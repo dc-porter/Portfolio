@@ -7,7 +7,7 @@
 # site until you delete that line.
 
 title: Work samples
-description: Procedures, resources, forms, and presentations by technical writer Dairyia Porter.
+description: Procedures, resources, forms, presentations, and docs-as-code samples by technical writer Dairyia Porter.
 
 categories:
   - name: Procedures
@@ -18,12 +18,8 @@ categories:
     description: Fillable forms with plain-language fields, a logical order, and clear instructions.
   - name: Presentations
     description: Slide decks and visual guides that walk people through a process step by step.
-  # HIDDEN FOR NOW. To show Docs as code again on the Work Samples page
-  # and the home page, delete the "hidden: true" line below, then add a
-  # work sample with "category: Docs as code".
-  - name: Docs as code
+  - name: Docs as Code
     description: Documentation written in Markdown, reviewed in Git, and published automatically.
-    hidden: true
 ---
 
 A selection of documentation projects, each with a short overview and how I approached it.
