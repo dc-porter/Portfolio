@@ -15,13 +15,15 @@
 
   /* Text */
   --ink: light-dark(#0d0d0d, #f5f4f1); /* near-black text and bold headings */
-  --text-muted: light-dark(#6b6763, #a9a49e); /* warm grey secondary text */
+  /* Warm grey secondary text: intros, descriptions, captions. Dark enough to pass
+     WCAG AA (4.5:1) on every background it's used on, in light and dark mode. */
+  --text-muted: light-dark(#4d4843, #c9c3bb);
   --heading: var(--ink);
 
   /* Accent: warm nude/taupe. Too light for text on white, so it's used for lines
      and dots; --accent-text is the deeper taupe used for small labels. */
   --accent: #b39b84;
-  --accent-text: light-dark(#73604d, #c9b5a1);
+  --accent-text: light-dark(#6a5643, #cfbca8);
   /* Taupe for large script words: as light as it can be while staying readable. */
   --accent-large: light-dark(#957d67, #b39b84);
 
@@ -53,8 +55,8 @@
   /* Inverse bands (near-black with white text) */
   --inverse-bg: light-dark(#0d0d0d, #e8e4de);
   --inverse-ink: light-dark(#ffffff, #0d0d0d);
-  --inverse-muted: light-dark(#b5b0aa, #5f5b57);
-  --inverse-accent: light-dark(#b39b84, #73604d);
+  --inverse-muted: light-dark(#cdc8c1, #46413c);
+  --inverse-accent: light-dark(#c4ad96, #5f4c3a);
 
   /* Lines */
   --border: light-dark(#e3dfd8, #2e2b28);
@@ -511,8 +513,8 @@ h2.section-title {
 
 .band-greige {
   /* A slightly deeper grey keeps secondary text readable on greige. */
-  --text-muted: light-dark(#5f5b57, #a9a49e);
-  --accent-text: light-dark(#6a5847, #c9b5a1);
+  --text-muted: light-dark(#46413c, #c9c3bb);
+  --accent-text: light-dark(#5f4c3a, #cfbca8);
   background: var(--section);
 }
 

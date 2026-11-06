@@ -4,7 +4,7 @@
 # with your new PDF (keep the same file name).
 
 title: Résumé
-description: Download my résumé as a PDF.
+description: Dairyia Porter’s résumé, with 8+ years of technical writing experience. View it here or download the PDF.
 pdf: /files/resume.pdf
 ---
 

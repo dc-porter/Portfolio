@@ -4,7 +4,7 @@
 # Delete the "availability" line if you don't want the green status badge.
 
 title: Let’s work together
-description: Get in touch by email or LinkedIn.
+description: Get in touch with Dairyia Porter about full-time roles, contract work, or documentation projects.
 availability: Open to new opportunities
 ---
 

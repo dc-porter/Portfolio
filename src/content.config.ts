@@ -23,7 +23,6 @@ const settings = defineCollection({
   schema: z.object({
     name: z.string(),
     role: z.string(),
-    description: z.string(),
     email: z.email(),
     linkedin: z.url(),
     location: z.string().optional(),
@@ -42,7 +41,6 @@ const homeIntro = defineCollection({
   loader: single('intro.md', './content/home'),
   schema: z.object({
     tagline: z.string(),
-    description: z.string().optional(),
     primaryButton: z.string().optional(),
     secondaryButton: z.string(),
   }),
@@ -206,7 +204,19 @@ const work = defineCollection({
         )
         .default([]),
       link: z.object({ label: z.string(), url: z.url() }).optional(),
+      // A docs-as-code sample: the file name of a Markdown file in content/docs/
+      // (without ".md"). The whole document is shown on the sample's page.
+      markdown: z.string().optional(),
     }),
+});
+
+/**
+ * content/docs/*.md: docs-as-code samples, kept as plain Markdown. Each one is
+ * shown on the work sample page that names it with `markdown:`.
+ */
+const docs = defineCollection({
+  loader: glob({ pattern: '[^_]*.md', base: './content/docs' }),
+  schema: z.object({}).passthrough(),
 });
 
 export const collections = {
@@ -221,4 +231,5 @@ export const collections = {
   homeClosing,
   pages,
   work,
+  docs,
 };

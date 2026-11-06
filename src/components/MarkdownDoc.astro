@@ -1,0 +1,231 @@
+---
+/*
+ * Shows a docs-as-code sample (a Markdown file in content/docs/) inside a work
+ * sample page, in the site's own type and colors, framed like the PDF viewer.
+ *
+ * - The toolbar names the source file and links to it on GitHub.
+ * - On phones, each table row becomes a small stacked block (column name, then
+ *   value), and long lines in code blocks wrap, so the page never scrolls sideways.
+ */
+import { getEntry, render } from 'astro:content';
+import Icon from './Icon.astro';
+
+interface Props {
+  /** The file name in content/docs/, without ".md". */
+  id: string;
+  /** Link to the Markdown source, such as the file on GitHub. */
+  source?: { label: string; url: string };
+}
+
+const { id, source } = Astro.props;
+const doc = await getEntry('docs', id);
+if (!doc) {
+  throw new Error(
+    `A work sample uses "markdown: ${id}", but there is no file at content/docs/${id}.md. ` +
+      'Check the spelling of the file name (without ".md").',
+  );
+}
+const { Content } = await render(doc);
+---
+
+<figure class="md-doc" data-md-doc>
+  <div class="toolbar">
+    <span class="file">
+      <Icon name="markdown" size={18} />
+      <span>{id}.md</span>
+    </span>
+    {
+      source && (
+        <a class="button button-secondary button-small" href={source.url} target="_blank" rel="noopener">
+          {source.label}
+          <Icon name="external" size={16} />
+          <span class="visually-hidden">(opens in a new tab)</span>
+        </a>
+      )
+    }
+  </div>
+  <div class="md-body prose">
+    <Content />
+  </div>
+</figure>
+
+<script>
+  // Give each table cell its column name, so phones can show rows as stacked blocks.
+  document.querySelectorAll<HTMLElement>('[data-md-doc] table').forEach((table) => {
+    const names = [...table.querySelectorAll('thead th')].map((th) => th.textContent?.trim() ?? '');
+    table.querySelectorAll('tbody tr').forEach((row) => {
+      [...row.children].forEach((cell, index) => {
+        if (names[index]) cell.setAttribute('data-label', names[index]);
+      });
+    });
+    table.classList.add('is-labeled');
+  });
+</script>
+
+<style>
+  .md-doc {
+    margin: 0;
+    border: 1px solid var(--border-strong);
+    background: var(--bg);
+  }
+
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 0.75rem 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--border-strong);
+  }
+
+  .file {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 0;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+  }
+
+  .file :global(.icon) {
+    flex: none;
+  }
+
+  .toolbar .button {
+    gap: 0.5rem;
+  }
+
+  .md-body {
+    max-width: none;
+    padding: clamp(1.25rem, 4vw, 2.75rem);
+  }
+
+  /* The document's own title: Abril Fatface at section-heading size, not the
+     page-title style used for the sample's name above. */
+  .md-body :global(h1) {
+    font-family: var(--font-title);
+    font-size: var(--text-h2);
+    font-weight: 400;
+    letter-spacing: 0.005em;
+    line-height: 1.05;
+    text-transform: none;
+  }
+
+  .md-body :global(h2) {
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+  }
+
+  .md-body :global(h3) {
+    font-size: var(--text-h3);
+  }
+
+  /* The "Practice sample" note at the top: a plain bordered notice. */
+  .md-body :global(blockquote) {
+    padding: 0.9rem 1.1rem;
+    border: 1px solid var(--border-strong);
+    border-left-width: 4px;
+    background: var(--bg-soft);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+
+  .md-body :global(pre) {
+    border: 1px solid var(--border);
+    background: var(--bg-soft) !important;
+    color: var(--ink);
+  }
+
+  .md-body :global(pre code),
+  .md-body :global(pre span) {
+    color: var(--ink) !important;
+  }
+
+  .md-body :global(code) {
+    overflow-wrap: anywhere;
+  }
+
+  .md-body :global(table) {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .md-body :global(th) {
+    border-bottom-color: var(--border-strong);
+  }
+
+  .md-body :global(th),
+  .md-body :global(td) {
+    vertical-align: top;
+  }
+
+  .md-body :global(td code) {
+    white-space: nowrap;
+  }
+
+  /* Phones: wrap long code lines, and show each table row as a stacked block. */
+  @media (max-width: 640px) {
+    .md-body :global(pre) {
+      padding: 0.85rem 1rem;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-size: 0.8125rem;
+    }
+
+    .md-body :global(table) {
+      display: block;
+      overflow-x: auto;
+    }
+
+    .md-body :global(table.is-labeled) {
+      display: block;
+      overflow: visible;
+      border-top: 1px solid var(--border-strong);
+    }
+
+    .md-body :global(table.is-labeled thead) {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+
+    .md-body :global(table.is-labeled tbody),
+    .md-body :global(table.is-labeled tr) {
+      display: block;
+    }
+
+    .md-body :global(table.is-labeled tr) {
+      padding-block: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .md-body :global(table.is-labeled td) {
+      display: block;
+      padding: 0.3rem 0;
+      border: 0;
+    }
+
+    .md-body :global(table.is-labeled td::before) {
+      content: attr(data-label);
+      display: block;
+      color: var(--text-muted);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      line-height: 1.9;
+      text-transform: uppercase;
+    }
+
+    .md-body :global(td code) {
+      white-space: normal;
+    }
+  }
+</style>

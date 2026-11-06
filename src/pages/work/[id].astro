@@ -10,6 +10,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import BackBar from '../../components/BackBar.astro';
 import Icon from '../../components/Icon.astro';
 import PdfViewer from '../../components/PdfViewer.astro';
+import MarkdownDoc from '../../components/MarkdownDoc.astro';
 import {
   categoryHref,
   formatDate,
@@ -37,11 +38,23 @@ interface Props {
 }
 
 const { sample, newer, older } = Astro.props;
-const { title, summary, category, date, role, audience, tools, pdf, images, link, placeholder } =
-  sample.data;
+const {
+  title,
+  summary,
+  category,
+  date,
+  role,
+  audience,
+  tools,
+  pdf,
+  images,
+  link,
+  markdown,
+  placeholder,
+} = sample.data;
 const { Content, headings } = await render(sample);
 
-const hasSample = Boolean(pdf || images.length > 0 || link);
+const hasSample = Boolean(pdf || markdown || images.length > 0 || link);
 const toc = [
   ...headings.filter((heading) => heading.depth === 2),
   ...(hasSample ? [{ slug: 'the-sample', text: 'The sample' }] : []),
@@ -128,6 +141,9 @@ const facts = [
 
               {pdf && <PdfViewer src={pdf} title={title} />}
 
+              {/* A docs-as-code sample: the whole Markdown document, with its link in the top bar. */}
+              {markdown && <MarkdownDoc id={markdown} source={link} />}
+
               {images.length > 0 && (
                 <div class="gallery">
                   {images.map((image) => (
@@ -147,7 +163,7 @@ const facts = [
                 </div>
               )}
 
-              {link && (
+              {link && !markdown && (
                 <p class="external">
                   <a class="button button-secondary" href={link.url} target="_blank" rel="noopener">
                     {link.label}

@@ -4,13 +4,14 @@
 # Your name and job title come from content/settings.md.
 # Your photo comes from content/pages/about.md.
 # The text below the --- line is the short intro under your title.
+# It's also the description that search engines and link previews
+# (LinkedIn, Slack, etc.) show for the home page, and for any page
+# that doesn't have its own description.
 # ─────────────────────────────────────────────────────────────
 
 # The small uppercase line above your name.
 tagline: Knowledge management · Review workflows · AI tools & automation
 
-# Shown by search engines and link previews for the home page.
-description: Dairyia Porter is a senior technical writer specializing in technical documentation, training, and knowledge management.
 
 # The button under your intro. It downloads the résumé PDF set in
 # content/pages/resume.md.

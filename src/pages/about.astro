@@ -59,8 +59,8 @@ const widths = headshot
     )
   }
 
-  <section class="band container about-body" aria-label="Professional summary">
-    <p class="label">Professional summary</p>
+  <section class="band container about-body" aria-labelledby="summary-heading">
+    <h2 id="summary-heading" class="summary-heading">Professional summary</h2>
     <div class="prose">
       <Content />
     </div>
@@ -74,8 +74,8 @@ const widths = headshot
     /* The photo's background is a light grey, so this section stays light in dark mode. */
     color-scheme: light;
     --photo-w: clamp(420px, 50vw, 960px);
-    --text-muted: #4a4643;
-    --accent-text: #5a4a3c;
+    --text-muted: #36322e;
+    --accent-text: #4f3f31;
     --edge: max(var(--gutter), calc((100vw - var(--page-width)) / 2));
 
     display: grid;
@@ -176,8 +176,9 @@ const widths = headshot
     gap: 1.25rem clamp(2rem, 6vw, 6rem);
   }
 
-  .about-body .label {
-    padding-top: 0.5rem;
+  /* Same style as the "What I bring" heading in the text beside it. */
+  .summary-heading {
+    font-size: var(--text-h2);
   }
 
   @media (max-width: 860px) {

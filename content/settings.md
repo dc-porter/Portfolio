@@ -9,10 +9,6 @@
 name: Dairyia Porter
 role: Senior Technical Writer
 
-# One or two sentences that search engines and link previews
-# (LinkedIn, Slack, etc.) show for your site.
-description: Dairyia Porter is a senior technical writer specializing in technical documentation, training, and knowledge management.
-
 # Every "Email" button and link on the site opens a new email to this address.
 email: dee.porter97@gmail.com
 
