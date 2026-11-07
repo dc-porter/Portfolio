@@ -44,9 +44,10 @@ so you only set them once.
 
 **Fonts:** your name (in the hero, the top bar, and the footer), the big page titles (Work samples,
 About me, Résumé, Contact, and every work sample's title), and the large section headings use
-**Abril Fatface**. The line above your name and your title share one bold, wide, all-capitals style in
-Archivo. Smaller headings use Marcellus, and all other text, including the intro under your title,
-uses Jost.
+**Abril Fatface**. The line above your name is light Jost in small, widely spaced capitals, sized to
+fit on one line on desktop screens (it may wrap on phones). Your title is medium-weight Archivo in
+wide capitals. Smaller headings use Marcellus, and all other text, including the intro under your
+title, uses Jost.
 
 **Accent words:** put underscores around a word in a title to show it in the accent color, for example
 `title: Let’s work _together_`. It uses the same font as the rest of the heading. On the black
@@ -351,7 +352,7 @@ You don't need this to publish, but it lets you see changes before pushing them.
 | `src/pages/` | One template per page type. `src/pages/work/[id].astro` is the work sample detail template. |
 | `src/components/` | Reusable pieces: header, footer (email and LinkedIn only), the "Back" link bar, sample cards, the two-column photo section, the scrolling banner (`Marquee.astro`), the typewriter text (`Typewriter.astro`), the "Back to top" button (`BackToTop.astro`), the black category bar on the Work Samples page, accent words, icons, and the PDF viewer (which uses PDF.js to draw PDFs on phones). |
 | `src/lib/icons.ts` | The thin-line icons you can pick with `icon:` in Markdown. |
-| `src/styles/global.css` | Colors, the type scale, fonts (Abril Fatface for your name, page and sample titles, and home section headings, Archivo for the line above your name, your title, the stats, the process step numbers, the banner, and the category bar, Marcellus for smaller headings, Jost for text, Bodoni Moda italic for accent words), animations, spacing, and light/dark mode. |
+| `src/styles/global.css` | Colors, the type scale, fonts (Abril Fatface for your name, page and sample titles, and home section headings, Archivo for your title, the stats, the process step numbers, the banner, and the category bar, Marcellus for smaller headings, Jost for text, Bodoni Moda italic for accent words), animations, spacing, and light/dark mode. |
 | `src/lib/logos.ts` | Looks up tool logos from Simple Icons by name. |
 | `src/content.config.ts` | The list of fields each Markdown file can have, and which are required. |
 | `src/lib/content.ts` | Loads the content, leaves out drafts and hidden categories, and produces the friendly error messages. |
