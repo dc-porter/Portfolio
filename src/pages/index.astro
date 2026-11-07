@@ -392,8 +392,19 @@ const toolGroups = tools.data.groups
     text-transform: uppercase;
   }
 
+  /* The line above your name: a light weight of the body font (Jost), in small
+     capitals with wide letter spacing. Sized (never below 12px) so it fits on one
+     line on desktop screens 1280px and wider; it may wrap on phones and tablets. */
+  .hero-tagline {
+    font-family: var(--font-sans);
+    font-size: clamp(0.75rem, 0.94vw, 0.8rem);
+    font-weight: 300;
+  }
+
+  /* Your title: medium weight; same size, capitals, and spacing as before. */
   .hero-role {
     margin-top: 1.25rem;
+    font-weight: 500;
   }
 
   .hero-intro {
