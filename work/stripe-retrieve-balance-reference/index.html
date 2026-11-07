@@ -1,0 +1,254 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Stripe Retrieve balance API reference | Dairyia Porter</title><meta name="description" content="A practice API reference page for Stripe's Retrieve balance endpoint, written in Markdown from Stripe's public API documentation."><link rel="canonical" href="https://dc-porter.github.io/Portfolio/work/stripe-retrieve-balance-reference/"><meta name="generator" content="Astro v7.4.2"><!-- Favicon: a "DP" monogram in Abril Fatface (files in public/). --><link rel="icon" href="/Portfolio/favicon.ico" sizes="48x48"><link rel="icon" href="/Portfolio/favicon.svg" type="image/svg+xml"><link rel="icon" href="/Portfolio/favicon-32x32.png" type="image/png" sizes="32x32"><link rel="icon" href="/Portfolio/favicon-16x16.png" type="image/png" sizes="16x16"><link rel="apple-touch-icon" href="/Portfolio/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="/Portfolio/site.webmanifest"><!-- Link previews (Open Graph for LinkedIn, Slack, Facebook; Twitter card for X). --><meta property="og:type" content="website"><meta property="og:site_name" content="Dairyia Porter"><meta property="og:title" content="Stripe Retrieve balance API reference | Dairyia Porter"><meta property="og:description" content="A practice API reference page for Stripe's Retrieve balance endpoint, written in Markdown from Stripe's public API documentation."><meta property="og:url" content="https://dc-porter.github.io/Portfolio/work/stripe-retrieve-balance-reference/"><meta property="og:image" content="https://dc-porter.github.io/Portfolio/og-image.jpg"><meta property="og:image:type" content="image/jpeg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Dairyia Porter, senior technical writer"><meta property="og:locale" content="en_US"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Stripe Retrieve balance API reference | Dairyia Porter"><meta name="twitter:description" content="A practice API reference page for Stripe's Retrieve balance endpoint, written in Markdown from Stripe's public API documentation."><meta name="twitter:image" content="https://dc-porter.github.io/Portfolio/og-image.jpg"><meta name="twitter:image:alt" content="Dairyia Porter, senior technical writer"><meta name="theme-color" content="#ffffff"><script>
+      // Light mode is the default. Apply a saved dark-mode choice before the page draws.
+      // Turn on the gentle scroll fade-in unless the visitor prefers reduced motion.
+      (function () {
+        const root = document.documentElement;
+        try {
+          if (localStorage.getItem('theme') === 'dark') root.dataset.theme = 'dark';
+        } catch {}
+        if (
+          'IntersectionObserver' in window &&
+          window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+        ) {
+          root.classList.add('motion');
+        }
+      })();
+    </script><link rel="stylesheet" href="/Portfolio/_astro/BaseLayout.BY8ewei0.css"><style>.pdf-viewer[data-astro-cid-ksvybkbr]{border:1px solid var(--border-strong);background:var(--bg-soft);margin:0}.toolbar[data-astro-cid-ksvybkbr]{background:var(--bg);border-bottom:1px solid var(--border-strong);flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.75rem;padding:.75rem .75rem .75rem 1.25rem;display:flex}.file[data-astro-cid-ksvybkbr]{min-width:0;color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;overflow-wrap:anywhere;align-items:center;gap:.6rem;font-size:.75rem;font-weight:600;display:inline-flex}.file[data-astro-cid-ksvybkbr] svg[data-astro-cid-ksvybkbr]{fill:none;stroke:currentColor;stroke-width:1.4px;stroke-linejoin:round;flex:none;width:18px;height:18px}.page-count[data-astro-cid-ksvybkbr]{white-space:nowrap}.actions[data-astro-cid-ksvybkbr]{flex-wrap:wrap;gap:.5rem;display:flex}.actions[data-astro-cid-ksvybkbr] .button[data-astro-cid-ksvybkbr],.pdf-dialog-bar[data-astro-cid-ksvybkbr] .button[data-astro-cid-ksvybkbr]{gap:.5rem}.pdf-viewer[data-astro-cid-ksvybkbr] iframe{background:var(--bg-soft);border:0;width:100%;height:min(85vh,1000px);display:block}.pdf-viewer[data-astro-cid-ksvybkbr] .pdf-pages{overscroll-behavior:contain;-webkit-overflow-scrolling:touch;flex-direction:column;gap:.75rem;height:70vh;padding:.75rem;display:flex;overflow-y:auto}.pdf-viewer[data-astro-cid-ksvybkbr] .pdf-page{background:#fff;flex:none;width:100%;box-shadow:0 1px 3px #0000001f}.pdf-viewer[data-astro-cid-ksvybkbr] .pdf-page canvas{width:100%;height:100%;display:block}.pdf-viewer[data-astro-cid-ksvybkbr] .pdf-status{color:var(--text-muted);text-align:center;margin:auto;font-size:.9375rem}.pdf-dialog[data-astro-cid-ksvybkbr]{background:var(--bg-soft);width:100vw;max-width:none;height:100dvh;max-height:none;color:var(--ink);border:0;margin:0;padding:0}.pdf-dialog[data-astro-cid-ksvybkbr][open]{flex-direction:column;display:flex}.pdf-dialog[data-astro-cid-ksvybkbr]::backdrop{background:#0009}.pdf-dialog-bar[data-astro-cid-ksvybkbr]{padding:.75rem var(--gutter);background:var(--bg);border-bottom:1px solid var(--border-strong);align-items:center;gap:.5rem;display:flex}.pdf-dialog-title[data-astro-cid-ksvybkbr]{min-width:0;font-family:var(--font-heading);text-overflow:ellipsis;white-space:nowrap;flex:1;font-size:1.125rem;overflow:hidden}.pdf-close[data-astro-cid-ksvybkbr]{min-height:44px}.pdf-dialog-body[data-astro-cid-ksvybkbr]{flex:1;min-height:0}.pdf-dialog-body[data-astro-cid-ksvybkbr] iframe,.pdf-dialog-body[data-astro-cid-ksvybkbr] .pdf-pages{height:100%}html.pdf-overlay-open{overflow:hidden}@media (width<=720px){.toolbar[data-astro-cid-ksvybkbr]{padding-left:1rem}.pdf-dialog-title[data-astro-cid-ksvybkbr]{font-size:1rem}.dialog-download-label[data-astro-cid-ksvybkbr]{clip:rect(0 0 0 0);white-space:nowrap;width:1px;height:1px;position:absolute;overflow:hidden}}
+</style><link rel="stylesheet" href="/Portfolio/_astro/_id_.m9kNrC1Z.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header" id="top" tabindex="-1" data-astro-cid-nen7h5rs><div class="container header-inner" data-astro-cid-nen7h5rs><a class="wordmark" href="/Portfolio/" data-astro-cid-nen7h5rs>Dairyia Porter<span class="visually-hidden" data-astro-cid-nen7h5rs>, home page</span></a><nav class="site-nav" aria-label="Main" data-astro-cid-nen7h5rs><button class="icon-button menu-button" type="button" aria-expanded="false" aria-controls="nav-links" data-astro-cid-nen7h5rs><span class="visually-hidden" data-astro-cid-nen7h5rs>Menu</span><svg viewBox="0 0 24 24" aria-hidden="true" class="icon-open" data-astro-cid-nen7h5rs><path d="M4 8h16M4 16h16" data-astro-cid-nen7h5rs></path></svg><svg viewBox="0 0 24 24" aria-hidden="true" class="icon-close" data-astro-cid-nen7h5rs><path d="M6 6l12 12M18 6L6 18" data-astro-cid-nen7h5rs></path></svg></button><ul id="nav-links" class="nav-links" data-astro-cid-nen7h5rs><li data-astro-cid-nen7h5rs><a href="/Portfolio/" data-astro-cid-nen7h5rs>Home</a></li><li data-astro-cid-nen7h5rs><a href="/Portfolio/work/" aria-current="page" data-astro-cid-nen7h5rs>Work samples</a></li><li data-astro-cid-nen7h5rs><a href="/Portfolio/about/" data-astro-cid-nen7h5rs>About</a></li><li data-astro-cid-nen7h5rs><a href="/Portfolio/resume/" data-astro-cid-nen7h5rs>Résumé</a></li><li data-astro-cid-nen7h5rs><a href="/Portfolio/contact/" data-astro-cid-nen7h5rs>Contact</a></li></ul></nav><button class="icon-button theme-toggle" type="button" aria-label="Switch to dark mode" data-astro-cid-nen7h5rs><svg viewBox="0 0 24 24" aria-hidden="true" class="icon-moon" data-astro-cid-nen7h5rs><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" data-astro-cid-nen7h5rs></path></svg><svg viewBox="0 0 24 24" aria-hidden="true" class="icon-sun" data-astro-cid-nen7h5rs><circle cx="12" cy="12" r="4" data-astro-cid-nen7h5rs></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" data-astro-cid-nen7h5rs></path></svg></button></div></header><script type="module">var e=document.documentElement,t=document.querySelector(`.theme-toggle`),n=document.querySelector(`meta[name="theme-color"]`),r=()=>e.dataset.theme===`dark`,i=()=>{t?.setAttribute(`aria-label`,r()?`Switch to light mode`:`Switch to dark mode`),n?.setAttribute(`content`,r()?`#0d0d0d`:`#ffffff`)};i(),t?.addEventListener(`click`,()=>{let t=r()?`light`:`dark`;t===`dark`?e.dataset.theme=`dark`:delete e.dataset.theme;try{localStorage.setItem(`theme`,t)}catch{}i()});var a=document.querySelector(`.menu-button`);a?.addEventListener(`click`,()=>{let e=a.getAttribute(`aria-expanded`)!==`true`;a.setAttribute(`aria-expanded`,String(e))}),document.addEventListener(`keydown`,e=>{e.key===`Escape`&&a?.getAttribute(`aria-expanded`)===`true`&&(a.setAttribute(`aria-expanded`,`false`),a.focus())});</script><main id="main"><nav class="back-bar container is-sticky" aria-label="Page navigation" data-astro-cid-w7gfb7gs><ul data-astro-cid-w7gfb7gs><li data-astro-cid-w7gfb7gs><a href="/Portfolio/work/" data-astro-cid-w7gfb7gs><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 12H5"/><path d="m11 6-6 6 6 6"/></svg>Back to work samples</a></li><li data-astro-cid-w7gfb7gs><a href="/Portfolio/" data-astro-cid-w7gfb7gs><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 10.5 12 4l8.5 6.5"/><path d="M5.5 9v10.5h13V9"/><path d="M10 19.5v-5h4v5"/></svg>Home</a></li></ul></nav><script type="module">document.querySelectorAll(`a[data-back]`).forEach(e=>{e.addEventListener(`click`,e=>{let t=!1;try{t=new URL(document.referrer).origin===location.origin}catch{}t&&history.length>1&&(e.preventDefault(),history.back())})});</script><article data-astro-cid-qj36m7ki><header class="page-header container detail-header" data-astro-cid-qj36m7ki><p class="label category-link" data-astro-cid-qj36m7ki><a href="/Portfolio/work/#docs-as-code" data-astro-cid-qj36m7ki>Docs as Code</a></p><h1 class="page-title" data-astro-cid-qj36m7ki>Stripe Retrieve balance API reference</h1><p class="lead" data-astro-cid-qj36m7ki>A practice API reference page for Stripe&#39;s Retrieve balance endpoint, written in Markdown from Stripe&#39;s public API documentation.</p></header><div class="container detail-layout" data-astro-cid-qj36m7ki><aside class="detail-aside" data-astro-cid-qj36m7ki><dl class="facts" data-astro-cid-qj36m7ki><div data-astro-cid-qj36m7ki><dt class="label" data-astro-cid-qj36m7ki>Category</dt><dd data-astro-cid-qj36m7ki>Docs as Code</dd></div><div data-astro-cid-qj36m7ki><dt class="label" data-astro-cid-qj36m7ki>My role</dt><dd data-astro-cid-qj36m7ki>Wrote the reference page from Stripe&#39;s public API documentation</dd></div><div data-astro-cid-qj36m7ki><dt class="label" data-astro-cid-qj36m7ki>Audience</dt><dd data-astro-cid-qj36m7ki>Developers integrating with Stripe&#39;s API</dd></div><div data-astro-cid-qj36m7ki><dt class="label" data-astro-cid-qj36m7ki>Date</dt><dd data-astro-cid-qj36m7ki>November 2026</dd></div></dl><nav class="toc" aria-label="On this page" data-astro-cid-qj36m7ki><p class="label" data-astro-cid-qj36m7ki>On this page</p><ul data-astro-cid-qj36m7ki><li data-astro-cid-qj36m7ki><a href="#overview" data-astro-cid-qj36m7ki>Overview</a></li><li data-astro-cid-qj36m7ki><a href="#my-approach" data-astro-cid-qj36m7ki>My approach</a></li><li data-astro-cid-qj36m7ki><a href="#the-sample" data-astro-cid-qj36m7ki>The sample</a></li></ul></nav></aside><div class="detail-main" data-astro-cid-qj36m7ki><div class="prose" data-astro-cid-qj36m7ki><h2 id="overview">Overview</h2>
+<p>This is a single-endpoint API reference page for Stripe’s Retrieve balance endpoint, which returns the
+money in a Stripe account that is available to pay out and the money that is still pending. It is
+written for developers integrating with Stripe’s API. I wrote it in Markdown as a practice sample from
+Stripe’s public API documentation. It is not an official Stripe document.</p>
+<h2 id="my-approach">My approach</h2>
+<p>The page follows the order a developer works in: what the endpoint does, how to call it, what comes
+back, and what to do when it fails. Each section answers one question, with a copyable request, a full
+response example, and tables for the endpoint, response fields, and errors. I explained the details
+that trip people up, such as amounts in the smallest currency unit and the colon after the key in the
+curl example, and kept the source in Markdown so it can be reviewed and versioned in Git like code.</p>
+</div><section class="sample" aria-labelledby="the-sample" data-astro-cid-qj36m7ki><h2 id="the-sample" data-reveal data-astro-cid-qj36m7ki>The sample</h2><figure class="md-doc" data-md-doc data-astro-cid-pq675bwa><div class="toolbar" data-astro-cid-pq675bwa><span class="file" data-astro-cid-pq675bwa><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 15V9l2.5 3L11 9v6"/><path d="M16.5 9v6"/><path d="m14.25 12.75 2.25 2.25 2.25-2.25"/></svg><span data-astro-cid-pq675bwa>stripe-retrieve-balance-reference.md</span></span><a class="button button-secondary button-small" href="https://github.com/dc-porter/Portfolio/blob/main/content/docs/stripe-retrieve-balance-reference.md" target="_blank" rel="noopener" data-astro-cid-pq675bwa>View the Markdown source on GitHub<svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg><span class="visually-hidden" data-astro-cid-pq675bwa>(opens in a new tab)</span></a></div><div class="md-body prose" data-astro-cid-pq675bwa><h1 id="retrieve-balance">Retrieve balance</h1>
+<blockquote>
+<p><strong>Practice sample.</strong> Written by Dairyia Porter to demonstrate API reference writing. This is not an official Stripe document. Source: Stripe’s public API reference at docs.stripe.com, checked in November 2026.</p>
+</blockquote>
+<p>Returns the current balance of your Stripe account: money that is ready to pay out and money that is still on its way. Use it to show balances in a dashboard or to check funds before you send a payout.</p>
+<p>The balance returned belongs to the account you authenticate as.</p>
+<hr>
+<h2 id="endpoint">Endpoint</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="http"><code><span class="line"><span style="color:#F97583">GET</span><span style="color:#E1E4E8"> https://api.stripe.com/v1/balance</span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Method</td>
+<td><code>GET</code> (read-only; it doesn’t change anything)</td>
+</tr>
+<tr>
+<td>Path</td>
+<td><code>/v1/balance</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Your secret or restricted API key, sent with every request</td>
+</tr>
+</tbody>
+</table>
+<p><strong>About keys:</strong> Test keys start with <code>sk_test_</code> and return test data. Live keys return real data. Stripe recommends restricted keys (starting with <code>rk_live_</code>) for live mode, because they can be limited to the permissions you need. Never put a live key in documentation, screenshots, or shared code.</p>
+<hr>
+<h2 id="parameters">Parameters</h2>
+<p>This endpoint takes no parameters. Send the request with your API key and nothing else.</p>
+<hr>
+<h2 id="request-example">Request example</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">curl</span><span style="color:#9ECBFF"> https://api.stripe.com/v1/balance</span><span style="color:#79B8FF"> \</span></span>
+<span class="line"><span style="color:#79B8FF">  -u</span><span style="color:#9ECBFF"> "sk_test_your_key_here:"</span></span></code></pre>
+<p>The <code>-u</code> option sends your API key as the username. Stripe doesn’t use a password, so the colon after the key tells curl there’s no password and stops it from asking for one.</p>
+<hr>
+<h2 id="response-example">Response example</h2>
+<p>A successful request returns status <code>200 OK</code> and a balance object:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "object"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"balance"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "available"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "amount"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">666670</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "currency"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"usd"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "source_types"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">        "card"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">666670</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  ],</span></span>
+<span class="line"><span style="color:#79B8FF">  "connect_reserved"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "amount"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "currency"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"usd"</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  ],</span></span>
+<span class="line"><span style="color:#79B8FF">  "livemode"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">  "pending"</span><span style="color:#E1E4E8">: [</span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#79B8FF">      "amount"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">61414</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "currency"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"usd"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">      "source_types"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">        "card"</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">61414</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  ]</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="response-fields">Response fields</h3>
+<p>All amounts are in the currency’s smallest unit. For US dollars, that means cents: <code>666670</code> is $6,666.70.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>object</code></td>
+<td>string</td>
+<td>The kind of data returned. Always <code>"balance"</code>.</td>
+</tr>
+<tr>
+<td><code>available</code></td>
+<td>array of objects</td>
+<td>Money you can pay out or transfer now. One entry per currency.</td>
+</tr>
+<tr>
+<td><code>pending</code></td>
+<td>array of objects</td>
+<td>Money that isn’t available yet. One entry per currency.</td>
+</tr>
+<tr>
+<td><code>connect_reserved</code></td>
+<td>array of objects</td>
+<td>Money held to cover negative balances on some connected accounts (Stripe Connect). Can be <code>null</code>.</td>
+</tr>
+<tr>
+<td><code>livemode</code></td>
+<td>boolean</td>
+<td><code>true</code> for real data, <code>false</code> for test data.</td>
+</tr>
+</tbody>
+</table>
+<p>Each entry in <code>available</code>, <code>pending</code>, and <code>connect_reserved</code> has these fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>amount</code></td>
+<td>integer</td>
+<td>The total for that currency, in the smallest unit.</td>
+</tr>
+<tr>
+<td><code>currency</code></td>
+<td>string</td>
+<td>The three-letter currency code, in lowercase (for example, <code>usd</code>).</td>
+</tr>
+<tr>
+<td><code>source_types</code></td>
+<td>object</td>
+<td>The same total, split by payment type (for example, <code>card</code>). May be missing, as in the <code>connect_reserved</code> entry in the example.</td>
+</tr>
+</tbody>
+</table>
+<p>The balance object can also include three optional fields, each of which can be <code>null</code>: <code>instant_available</code> (money you can pay out with Instant Payouts), <code>issuing</code> (money you can spend on issued cards), and <code>refund_and_dispute_prefunding</code> (money set aside to cover future refunds, disputes, or a negative balance).</p>
+<hr>
+<h2 id="errors">Errors</h2>
+<p>If the request fails, Stripe returns an error status and an <code>error</code> object explaining what went wrong:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="color:#E1E4E8">{</span></span>
+<span class="line"><span style="color:#79B8FF">  "error"</span><span style="color:#E1E4E8">: {</span></span>
+<span class="line"><span style="color:#79B8FF">    "type"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"invalid_request_error"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#79B8FF">    "message"</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Invalid API Key provided: sk_test_****1234"</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>The errors you’re most likely to see on this endpoint:</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>401 Unauthorized</code></td>
+<td>The API key is missing or invalid.</td>
+<td>Check that you sent the key and copied it exactly.</td>
+</tr>
+<tr>
+<td><code>403 Forbidden</code></td>
+<td>The key doesn’t have permission to read balances.</td>
+<td>If you’re using a restricted key, give it read access to the balance.</td>
+</tr>
+<tr>
+<td><code>429 Too Many Requests</code></td>
+<td>Too many requests were sent too quickly.</td>
+<td>Wait, then retry, increasing the wait time after each attempt.</td>
+</tr>
+<tr>
+<td><code>500</code>–<code>504</code></td>
+<td>Something went wrong on Stripe’s side. These are rare.</td>
+<td>Retry later.</td>
+</tr>
+</tbody>
+</table>
+</div></figure><script type="module">document.querySelectorAll(`[data-md-doc] table`).forEach(e=>{let t=[...e.querySelectorAll(`thead th`)].map(e=>e.textContent?.trim()??``);e.querySelectorAll(`tbody tr`).forEach(e=>{[...e.children].forEach((e,n)=>{t[n]&&e.setAttribute(`data-label`,t[n])})}),e.classList.add(`is-labeled`)});</script></section></div></div><nav class="back-bar container sample-end-links" aria-label="Sample navigation" data-astro-cid-w7gfb7gs><ul data-astro-cid-w7gfb7gs><li data-astro-cid-w7gfb7gs><a href="/Portfolio/work/" data-astro-cid-w7gfb7gs><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 12H5"/><path d="m11 6-6 6 6 6"/></svg>Back to work samples</a></li><li data-astro-cid-w7gfb7gs><a href="/Portfolio/" data-astro-cid-w7gfb7gs><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 10.5 12 4l8.5 6.5"/><path d="M5.5 9v10.5h13V9"/><path d="M10 19.5v-5h4v5"/></svg>Home</a></li></ul></nav><nav class="container pager" aria-label="More work samples" data-astro-cid-qj36m7ki><a class="pager-link next" href="/Portfolio/work/technical-writing-review-checklist/" rel="next" data-astro-cid-qj36m7ki><span class="label" data-astro-cid-qj36m7ki>Next sample</span><span class="pager-title" data-astro-cid-qj36m7ki>Technical writing review checklist</span></a></nav></article><div class="container back-to-top-row" data-astro-cid-vy5be4ad><a class="button button-secondary back-to-top" href="#top" data-back-to-top data-astro-cid-vy5be4ad><svg class="icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg>Back to top</a></div><script type="module">document.querySelectorAll(`[data-back-to-top]`).forEach(e=>{e.addEventListener(`click`,e=>{e.preventDefault();let t=window.matchMedia(`(prefers-reduced-motion: reduce)`).matches;window.scrollTo({top:0,behavior:t?`auto`:`smooth`}),document.getElementById(`top`)?.focus({preventScroll:!0}),history.replaceState(null,``,location.pathname+location.search)})});</script></main><footer class="site-footer" data-astro-cid-jo6i4kqk><div class="container footer-inner" data-astro-cid-jo6i4kqk><div class="identity" data-astro-cid-jo6i4kqk><a class="footer-name" href="/Portfolio/" data-astro-cid-jo6i4kqk>Dairyia Porter</a><p data-astro-cid-jo6i4kqk>Senior Technical Writer</p></div><ul class="footer-links footer-contact" data-astro-cid-jo6i4kqk><li data-astro-cid-jo6i4kqk><a href="mailto:dee.porter97@gmail.com" data-astro-cid-jo6i4kqk>Email</a></li><li data-astro-cid-jo6i4kqk><a href="https://www.linkedin.com/in/dairyia-porter-371b81127" rel="me noopener" target="_blank" data-astro-cid-jo6i4kqk>LinkedIn</a></li></ul><p class="copyright" data-astro-cid-jo6i4kqk>© 2026 Dairyia Porter</p></div></footer><script>
+      // Scroll animations replay: an item animates each time it scrolls into view,
+      // and resets once it has scrolled completely out of view.
+      (function () {
+        if (!document.documentElement.classList.contains('motion')) return;
+        const show = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) entry.target.classList.add('is-visible');
+            }
+          },
+          { rootMargin: '0px 0px -6% 0px', threshold: 0.08 },
+        );
+        const hide = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) entry.target.classList.remove('is-visible');
+          }
+        });
+        // Groups that replay together (the home page hero) restart once they are
+        // well back in view, and reset once they have left it completely.
+        const replay = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) entry.target.classList.add('is-reset');
+              else if (entry.intersectionRatio >= 0.35) entry.target.classList.remove('is-reset');
+            }
+          },
+          { threshold: [0, 0.35] },
+        );
+        const watch = () => {
+          document.querySelectorAll('[data-reveal]').forEach((el) => {
+            show.observe(el);
+            hide.observe(el);
+          });
+          document.querySelectorAll('[data-replay]').forEach((el) => replay.observe(el));
+        };
+        watch();
+
+        // The browser's Back button can show a saved copy of the page with its
+        // animations already finished. Reset everything so they play again.
+        window.addEventListener('pageshow', (event) => {
+          if (!event.persisted) return;
+          for (const observer of [show, hide, replay]) observer.disconnect();
+          document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.remove('is-visible'));
+          document.querySelectorAll('[data-replay]').forEach((el) => el.classList.add('is-reset'));
+          requestAnimationFrame(() => requestAnimationFrame(watch));
+        });
+      })();
+    </script></body></html>
